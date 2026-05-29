@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сердце студенчества | НТИ НИЯУ МИФИ</title>
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container nav-bar">
+            <nav class="nav-left">
+                <ul class="nav-links">
+                    <li><a href="#" class="nav-link" onclick="navigateTo('home')">Главная</a></li>
+                    <li><a href="#" class="nav-link" onclick="navigateTo('news')">Новости</a></li>
+                    <li><a href="#" class="nav-link" onclick="navigateTo('about')">О платформе</a></li>
+                    <li><a href="#" class="nav-link" onclick="navigateTo('contacts')">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions" id="userActions"></div>
+        </div>
+    </header>
+
+    <main id="app">
+        <!-- Главная -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <div class="hero-bg">
+                    <div class="hero-circle circle-1"></div>
+                    <div class="hero-circle circle-2"></div>
+                    <div class="hero-circle circle-3"></div>
+                </div>
+                <div class="container hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title animate-slide-up">Вместе меняем<br><span class="hero-highlight">мир вокруг</span></h1>
+                        <p class="hero-subtitle animate-slide-up delay-1">Волонтёрская платформа НТИ НИЯУ МИФИ — найди проект по душе, помогай и развивайся вместе с нами</p>
+                        <div class="hero-buttons animate-slide-up delay-2">
+                            <button class="btn-primary btn-lg" onclick="scrollToProjects()">
+                                <span>Смотреть проекты</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </button>
+                            <button class="btn-outline-light btn-lg" onclick="navigateTo('about')">Узнать больше</button>
+                        </div>
+                    </div>
+                    <div class="hero-logo-wrapper animate-float">
+                        <img src="logo.svg" alt="Сердце студенчества" class="hero-logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=hero-logo-placeholder>❤️</div>';">
+                    </div>
+                </div>
+                <div class="hero-wave">
+                    <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="#f0f4f8" d="M0,32L80,42.7C160,53,320,75,480,74.7C640,75,800,53,960,42.7C1120,32,1280,32,1360,32L1440,32L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"/></svg>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <div class="container">
+                    <h2 class="section-title">Актуальные проекты</h2>
+                    <div class="filter-bar" id="filterBar"></div>
+                </div>
+            </div>
+            <div class="container" id="projectsSection">
+                <div class="projects-grid" id="projectsGrid"></div>
+            </div>
+        </section>
+
+        <!-- Новости -->
+        <section id="news-page" class="page">
+            <div class="section-header">
+                <div class="container"><h2 class="section-title">Новости движения</h2></div>
+            </div>
+            <div class="container"><div class="news-grid" id="newsGrid"></div></div>
+        </section>
+
+        <!-- О платформе -->
+        <section id="about-page" class="page">
+            <div class="section-header">
+                <div class="container"><h2 class="section-title">О платформе</h2></div>
+            </div>
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-card glass">
+                        <div class="about-icon">🎯</div>
+                        <h3>Наша миссия</h3>
+                        <p>Объединить студентов НТИ НИЯУ МИФИ для добрых дел и развития волонтёрского движения.</p>
+                    </div>
+                    <div class="about-card glass">
+                        <div class="about-icon">📊</div>
+                        <h3>Статистика</h3>
+                        <div class="stats-inline" id="statsContainer">
+                            <div class="stat-mini"><strong id="volunteersCount">0</strong> волонтёров</div>
+                            <div class="stat-mini"><strong id="projectsCount">0</strong> проектов</div>
+                            <div class="stat-mini"><strong id="hoursCount">0</strong> часов</div>
+                        </div>
+                    </div>
+                    <div class="about-card glass">
+                        <div class="about-icon">💡</div>
+                        <h3>Возможности</h3>
+                        <p>Участвуй в проектах, получай достижения, развивай навыки и помогай обществу.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts-page" class="page">
+            <div class="section-header">
+                <div class="container"><h2 class="section-title">Контакты</h2></div>
+            </div>
+            <div class="container">
+                <div class="contacts-grid">
+                    <div class="contact-card glass">
+                        <div class="contact-icon-big">📧</div>
+                        <h4>Email</h4>
+                        <p>volunteer@nti.mephi.ru</p>
+                    </div>
+                    <div class="contact-card glass">
+                        <div class="contact-icon-big">📍</div>
+                        <h4>Адрес</h4>
+                        <p>г. Новоуральск, ул. Ленина 85</p>
+                    </div>
+                    <div class="contact-card glass">
+                        <div class="contact-icon-big">📞</div>
+                        <h4>Телефон</h4>
+                        <p>+7 (34370) 9-55-55</p>
+                    </div>
+                </div>
+                <form class="contact-form glass" id="contactForm" style="max-width:500px;margin:40px auto;">
+                    <h3>Напишите нам</h3>
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="4" placeholder="Сообщение" required></textarea>
+                    <button type="submit" class="btn-primary">Отправить</button>
+                    <div id="contactMessage" style="margin-top:12px;font-weight:500;"></div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Детальная проекта -->
+        <section id="project-detail-page" class="page">
+            <div class="container" id="projectDetail"></div>
+        </section>
+
+        <!-- Личный кабинет -->
+        <section id="profile-page" class="page">
+            <div class="section-header">
+                <div class="container"><h2 class="section-title">Личный кабинет</h2></div>
+            </div>
+            <div class="container"><div id="profileCard"></div></div>
+        </section>
+
+        <!-- Админ-панель -->
+        <section id="admin-page" class="page">
+            <div class="section-header">
+                <div class="container"><h2 class="section-title">Админ-панель</h2></div>
+            </div>
+            <div class="container">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="switchAdminTab('projects')">Проекты</button>
+                    <button class="tab-btn" onclick="switchAdminTab('news')">Новости</button>
+                    <button class="tab-btn" onclick="switchAdminTab('users')">Пользователи</button>
+                    <button class="tab-btn" onclick="switchAdminTab('volunteers')">Волонтёры</button>
+                </div>
+                <div id="adminTabContent"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Модалка -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content glass">
+            <button class="modal-close" onclick="closeAuthModal()">✕</button>
+            <form id="loginForm" class="auth-form">
+                <h2>Вход в аккаунт</h2>
+                <input type="email" placeholder="Email" id="loginEmail" required>
+                <input type="password" placeholder="Пароль" id="loginPassword" required>
+                <button type="submit" class="btn-primary btn-full">Войти</button>
+                <p class="auth-switch">Нет аккаунта? <a href="#" onclick="showRegisterForm()">Зарегистрироваться</a></p>
+            </form>
+            <form id="registerForm" class="auth-form hidden">
+                <h2>Регистрация</h2>
+                <input type="text" placeholder="ФИО" id="regName" required>
+                <input type="email" placeholder="Email" id="regEmail" required>
+                <input type="password" placeholder="Пароль" id="regPassword" required>
+                <button type="submit" class="btn-primary btn-full">Создать аккаунт</button>
+                <p class="auth-switch">Уже есть аккаунт? <a href="#" onclick="showLoginForm()">Войти</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Модалка загрузки фото -->
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-content glass">
+            <button class="modal-close" onclick="closeImageModal()">✕</button>
+            <h3>Загрузить изображение</h3>
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px;">
+                <input type="text" placeholder="Ссылка на изображение" id="imageUrl">
+                <div style="text-align:center;color:#94a3b8;">— или —</div>
+                <input type="file" id="imageFile" accept="image/*">
+                <button class="btn-primary btn-full" onclick="saveImage()">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">© 2025 НТИ НИЯУ МИФИ. «Сердце студенчества»</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
